@@ -5,7 +5,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 
 const TopItem = ({ title, value, Icon }) => (
-  <Stack  direction="row"  spacing={2} gap={2} alignItems="center" sx={{ direction: 'rtl' }}>
+  <Stack  direction="row"  spacing={4} gap={2} alignItems="center" width={"15rem"} sx={{ direction: 'rtl' }}>
     <Box sx={{ textAlign: 'left' }} >
       <Typography variant="body1" sx={{ fontWeight: 800, color: '#333' }}>
         {title}
@@ -17,8 +17,8 @@ const TopItem = ({ title, value, Icon }) => (
     {/* آیکون لوزی شکل */}
     <Box
       sx={{
-        width: 38,
-        height: 38,
+        width: "40px",
+        height: "40px",
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -47,7 +47,7 @@ const TopBarInfo = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        py: 4,
+        py: 3,
         px: 4,
         backgroundColor: '#f8faff', // رنگ پس‌زمینه متمایل به آبی بسیار روشن مطابق عکس
         borderBottom: '1px solid #eee',

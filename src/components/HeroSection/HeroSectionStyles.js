@@ -14,7 +14,7 @@ export const HeroWrapper = styled(Box)(({ theme }) => ({
   overflow: "hidden", // برای اینکه پس زمینه از کادر بیرون نزند
   padding: theme.spacing(4),
   [theme.breakpoints.up("md")]: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(1),
     flexDirection: "row", // در دسکتاپ به صورت ردیفی
     justifyContent: "space-between",
 
@@ -30,7 +30,7 @@ export const BackgroundGradient = styled(Box)(({ theme }) => ({
   height: "100%",
   background: `
     radial-gradient(
-      ellipse 20% 70% at center,
+      ellipse 25% 65% at center,
       #004d40 0%,
       #00332b 30%,
       #1A1A1A 70%,
@@ -69,7 +69,7 @@ export const ImageBox = styled(Box)(({ theme }) => ({
     height: "auto",
     display: "block",
     clipPath: "inset(30px 0px 30px 0px)",
-    marginTop: "-140px",
+    marginTop: "-100px",
     marginBottom: "0px",
   },
 }));

@@ -57,7 +57,8 @@ const Navbar = () => {
                 fontFamily: theme.typography.fontFamily,
                 fontWeight: 600,
                 "&:hover": {
-                  color: theme.palette.primary.main,
+                  color: "#028c75",
+                  scale:"1.05"
                 },
               }}
             >
