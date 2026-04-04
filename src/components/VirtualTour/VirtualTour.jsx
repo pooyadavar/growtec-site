@@ -31,7 +31,15 @@ const VirtualTour = () => {
       <VideoOverlay />
 
       <ContentContainer>
-        <Typography variant="h2" sx={{ fontWeight: 900, mb: 4, lineHeight: 1.5 }}>
+        <Typography 
+          variant="h2" 
+          sx={{ 
+            fontWeight: 900, 
+            mb: 4, 
+            lineHeight: 1.5,
+            fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } // Responsive font size
+          }}
+        >
           تور واقعیت مجازی <br /> اکوسیستم گروتک
         </Typography>
         <Button

@@ -39,7 +39,7 @@ const StatsSection = () => {
                     style={{ scale: "1.2" }}
                   />
                 </IconWrapper>
-                <Typography variant="h3" sx={{ fontWeight: 900, mb: 1 }}>
+                <Typography variant="h3" sx={{ fontWeight: 900, mb: 1, fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }}>
                   {inView ? (
                     <CountUp
                       start={0}
@@ -54,7 +54,7 @@ const StatsSection = () => {
                 </Typography>
                 <Typography
                   variant="body1"
-                  sx={{ fontWeight: 500, opacity: 0.9 }}
+                  sx={{ fontWeight: 500, opacity: 0.9, fontSize: { xs: '0.875rem', sm: '1rem', md: '1.125rem' } }}
                 >
                   {item.title}
                 </Typography>

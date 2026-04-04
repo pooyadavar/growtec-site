@@ -22,11 +22,13 @@ export const TeamScrollContainer = styled(Box)(({ theme }) => ({
   padding: "20px 0",
   "&::-webkit-scrollbar": { display: "none" },
   scrollbarWidth: "none",
+
   /* تبدیل به گرید در دسکتاپ */
   [theme.breakpoints.up("md")]: {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "repeat(4, 1fr)",
     overflowX: "visible",
+    justifyContent: "space-around",
   },
 }));
 

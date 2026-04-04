@@ -8,6 +8,7 @@ import VirtualTour from "./components/VirtualTour/VirtualTour";
 import StatsSection from "./components/StatsSection/StatsSection";
 import ProjectsSlider from "./components/ProjectsSlider/ProjectsSlider";
 import TeamSection from "./components/Team/TeamSection";
+import Footer from "./components/layout/Footer";
 
 const myProjects = [
   {
@@ -58,6 +59,7 @@ function App() {
       <StatsSection />
       <ProjectsSlider projects={myProjects} />
       <TeamSection />
+      <Footer />
       {/* اینجا بقیه صفحات و کامپوننت‌های شما قرار می‌گیرند */}
     </Box>
   );

@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 export const StatsWrapper = styled(Box)(({ theme }) => ({
   position: "relative",
   width: "100%",
-  padding: theme.spacing(12, 0),
+  padding: theme.spacing(6, 0), // Adjusted padding for mobile
   overflow: "hidden",
   display: "flex",
   justifyContent: "center",
@@ -49,17 +49,26 @@ export const StatItem = styled(Box)({
   zIndex: 2,
 });
 
-export const IconWrapper = styled(Box)({
-  width: "160px", // بزرگتر شد
-  height: "140px", // بزرگتر شد
+export const IconWrapper = styled(Box)(({ theme }) => ({ // Added theme to access breakpoints
+  width: "120px", // Default for mobile
+  height: "100px", // Default for mobile
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  marginBottom: "15px",
-  "& img": {
-    width: "120px", // ابعاد SVG بزرگتر شد
-    height: "120px",
-    objectFit: "contain",
-    filter: "drop-shadow(0 0 15px rgba(255,255,255,0.2))", // یه هاله خیلی نرم دور خود SVG
+  marginBottom: "10px", // Reduced margin for mobile
+  [theme.breakpoints.up("md")]: { // Larger on desktop
+    width: "160px", 
+    height: "140px", 
+    marginBottom: "15px",
   },
-});
+  "& img": {
+    width: "90px", // Default for mobile
+    height: "90px",
+    objectFit: "contain",
+    filter: "drop-shadow(0 0 15px rgba(255,255,255,0.2))",
+    [theme.breakpoints.up("md")]: { // Larger on desktop
+      width: "120px", 
+      height: "120px",
+    },
+  },
+}));

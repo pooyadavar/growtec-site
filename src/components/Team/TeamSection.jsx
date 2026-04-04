@@ -51,10 +51,10 @@ const TeamSection = () => {
                     boxShadow: "0 0 25px rgba(76, 175, 80, 0.3)" 
                   }}
                 />
-                <Typography variant="h4" sx={{ fontWeight: 800, mb: 1 }}>
+                <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 , textAlign:"center" }}>
                   {member.name}
                 </Typography>
-                <Typography variant="h5" sx={{ color: "#4caf50", fontWeight: 600 }}>
+                <Typography variant="h6" sx={{ color: "#4caf50", fontWeight: 600 , textAlign:"center" }}>
                   {member.role}
                 </Typography>
               </MemberCard>

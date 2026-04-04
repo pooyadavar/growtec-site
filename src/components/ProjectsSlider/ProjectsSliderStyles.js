@@ -4,7 +4,7 @@ import { Box, Paper } from "@mui/material";
 export const ProjectsWrapper = styled(Box)(({ theme }) => ({
   position: "relative",
   width: "100%",
-  padding: theme.spacing(12, 0),
+  padding: theme.spacing(6, 0),
   background: `
     linear-gradient(to bottom, rgba(26, 26, 26, 1) 0%, rgba(26, 26, 26, 0) 35%, rgba(26, 26, 26, 0) 65%, rgba(26, 26, 26, 1) 100%),
     radial-gradient(circle at 10% 50%, rgba(40, 24, 74, 0.8) 0%, rgba(0, 0, 0, 0) 50%),
@@ -13,30 +13,36 @@ export const ProjectsWrapper = styled(Box)(({ theme }) => ({
   `,
 }));
 
-export const CustomNavButton = styled(Box)({
+export const CustomNavButton = styled(Box)(({ theme }) => ({ // Added theme to access breakpoints
   position: "absolute",
   top: "50%",
   transform: "translateY(-50%)",
-  zIndex: 9999, // لایه رو کاملاً بیار بالا
+  zIndex: 9999,
   cursor: "pointer",
   color: "#ffffff",
-  display: "flex", // همیشه نمایش داده بشه برای تست
+  display: "flex",
   alignItems: "center",
   justifyContent: "center",
   transition: "all 0.3s ease",
-  backgroundColor: "rgba(255, 255, 255, 0.05)", // یک پس‌زمینه خیلی محو برای دیده شدن جاش
+  backgroundColor: "rgba(255, 255, 255, 0.05)",
   borderRadius: "50%",
   padding: "10px",
+  [theme.breakpoints.down("md")]: { // Apply on screens smaller than md
+    padding: "5px", // Smaller padding for mobile
+  },
   "& svg": {
     fontSize: "60px",
     filter: "drop-shadow(0 0 10px rgba(0,0,0,0.9))",
+    [theme.breakpoints.down("md")]: { // Smaller font size for SVG on mobile
+      fontSize: "30px",
+    },
   },
   "&:hover": {
     scale: "1.2",
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     color: "#4caf50",
   },
-});
+}));
 
 export const ScrollContainer = styled(Box)({
   display: "flex",

@@ -55,7 +55,13 @@ const ProjectsSlider = ({ projects }) => {
       >
         <Typography
           variant="h3"
-          sx={{ fontWeight: 900, mb: 6, textAlign: "center", color: "#fff" }}
+          sx={{ 
+            fontWeight: 900, 
+            mb: 6, 
+            textAlign: "center", 
+            color: "#fff",
+            fontSize: { xs: '2rem', md: '3rem' } // Responsive font size
+          }}
         >
           آخرین پروژه‌ ها
         </Typography>
@@ -64,9 +70,9 @@ const ProjectsSlider = ({ projects }) => {
         <CustomNavButton
           onClick={() => handleSlide("prev")}
           sx={{
-            right: { xs: "0px", md: "-80px" }, // در دسکتاپ کاملاً بیرون کادر
-            opacity: canScrollPrev ? 1 : 0.3, // به جای غیب کردن، کمرنگش کن
-            top: { xs: "430px", md: "300px" },
+            right: { xs: "0px", md: "-80px" },
+            opacity: canScrollPrev ? 1 : 0.3,
+            top: { xs: "50%", md: "300px" }, // Adjusted for mobile
           }}
         >
           <ArrowBackIosNewIcon />
@@ -78,7 +84,7 @@ const ProjectsSlider = ({ projects }) => {
           sx={{
             left: { xs: "0px", md: "-80px" },
             opacity: canScrollNext ? 1 : 0.3,
-            top: { xs: "430px", md: "300px" },
+            top: { xs: "50%", md: "300px" }, // Adjusted for mobile
           }}
         >
           <ArrowForwardIosIcon />
@@ -94,7 +100,7 @@ const ProjectsSlider = ({ projects }) => {
                     "& img": {
                       width: "100%",
                       borderRadius: "25px",
-                      height: "350px",
+                      height: { xs: "200px", md: "350px" }, // Responsive image height
                       objectFit: "cover",
                     },
                   }}
@@ -110,17 +116,35 @@ const ProjectsSlider = ({ projects }) => {
                     pr: { md: 4 },
                   }}
                 >
-                  <Typography variant="h3" sx={{ fontWeight: 800, mb: 3 }}>
+                  <Typography 
+                    variant="h3" 
+                    sx={{ 
+                      fontWeight: 800, 
+                      mb: 3,
+                      fontSize: { xs: '1.5rem', md: '2.5rem' } // Responsive font size
+                    }}
+                  >
                     {project.clientName}
                   </Typography>
-                  <Typography variant="h5">
+                  <Typography 
+                    variant="h5"
+                    sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }} // Responsive font size
+                  >
                     استان : {project.province}
                   </Typography>
-                  <Typography variant="h5">متراژ : {project.area}</Typography>
-                  <Typography variant="h5">
+                  <Typography 
+                    variant="h5"
+                    sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }} // Responsive font size
+                  >
+                    متراژ : {project.area}
+                  </Typography>
+                  <Typography 
+                    variant="h5"
+                    sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }} // Responsive font size
+                  >
                     محصول : {project.product}
                   </Typography>
-                  <Typography sx={{ mt: 2, color: "#ccc", lineHeight: 1.8 }}>
+                  <Typography sx={{ mt: 2, color: "#ccc", lineHeight: 1.8, fontSize: { xs: '0.875rem', md: '1rem' } }}>
                     {project.description}
                   </Typography>
                 </Box>
