@@ -7,10 +7,10 @@ export const TeamWrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(12, 0),
   /* استفاده از همان گرادیانت بنفش و سبز که برای کل سایت ست کردیم */
   background: `
-    linear-gradient(to bottom, rgba(26, 26, 26, 1) 0%, rgba(26, 26, 26, 0) 35%, rgba(26, 26, 26, 0) 65%, rgba(26, 26, 26, 1) 100%),
-    radial-gradient(circle at 10% 50%, rgba(40, 24, 74, 0.8) 0%, rgba(0, 0, 0, 0) 50%),
-    radial-gradient(circle at 90% 50%, rgba(12, 55, 31, 0.8) 0%, rgba(0, 0, 0, 0) 50%),
-    rgba(26, 26, 26, 1)
+    linear-gradient(to bottom, rgba(26, 26, 26, 1) 0%, rgba(26, 26, 26, 0) 35%, rgba(237, 127, 235, 0.2) 65%, rgba(26, 26, 26, 0.87) 100%),
+    radial-gradient(circle at 10% 50%, rgba(78, 48, 143, 0.64) 0%, rgba(0, 0, 0, 0) 50%),
+    radial-gradient(circle at 90% 50%, rgba(136, 0, 146, 0.8) 0%, rgba(0, 0, 0, 0) 50%),
+    rgb(0, 0, 0)
   `,
 }));
 
@@ -32,7 +32,7 @@ export const TeamScrollContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const MemberCard = styled(Box)(({ theme }) => ({
+export const MemberCard = styled(Box)({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -41,7 +41,7 @@ export const MemberCard = styled(Box)(({ theme }) => ({
   "&:hover": {
     transform: "translateY(-10px)",
   },
-}));
+});
 
 export const StyledAvatar = styled(Avatar)({
   width: "190px",

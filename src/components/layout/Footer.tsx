@@ -3,31 +3,39 @@ import {
   Box,
   Container,
   Typography,
-  Link,
   IconButton,
   Stack,
-  Avatar,
   useTheme,
   alpha,
 } from "@mui/material";
-import growteclogo from "../../assets/svg/logo growtec.svg"; // تصویر گلخانه
+import { GridLegacy as Grid } from "@mui/material";
+import growteclogo from "../../assets/svg/logo growtec.svg";
 
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import PhoneIcon from "@mui/icons-material/Phone";
-import EmailIcon from "@mui/icons-material/Email";
-import { GridLegacy as Grid } from "@mui/material";
 
-const Footer: React.FC = () => {
+const Footer = () => {
   const theme = useTheme();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const services = [
+    "سیستم کنترل اقلیم",
+    "ماشین آبیاری و تغذیه",
+    "مشاوره ساخت گلخانه",
+    "اتوماسیون گلخانه",
+  ];
+
+  const contacts = [
+    "تهران خیابان آزادی خیابان حبیب الله نبش کوچه مجلسی پلاک ۲",
+    "۰۲۱۸۲۸۰۳۸۷۴",
+    "irgrowtech@gmail.com",
+  ];
 
   return (
     <Box
@@ -35,183 +43,134 @@ const Footer: React.FC = () => {
       sx={{
         bgcolor: theme.palette.background.default,
         color: alpha(theme.palette.common.white, 0.8),
-        pt: 10,
+        pt: 8,
         pb: 0,
         mt: "auto",
         position: "relative",
         overflow: "hidden",
-        direction: "ltr",
+        direction: "ltr", // تغییر دایرکشن به LTR
       }}
     >
+      {/* هاله‌های رنگی بک‌گراند */}
       <Box
         sx={{
           position: "absolute",
-          top: -100,
-          right: -100,
-          width: 300,
-          height: 300,
+          bottom: -150,
+          left: -100, // در LTR هاله را به چپ آوردم
+          width: 400,
+          height: 400,
           borderRadius: "50%",
-          background: alpha(theme.palette.primary.main, 0.1),
-          filter: "blur(80px)",
+          background: alpha("#4caf50", 0.15),
+          filter: "blur(100px)",
+          zIndex: 0,
+        }}
+      />
+      <Box
+        sx={{
+          position: "absolute",
+          top: 100,
+          right: -150, // هاله دوم به راست رفت
+          width: 400,
+          height: 400,
+          borderRadius: "50%",
+          background: alpha("#5e239d", 0.08),
+          filter: "blur(100px)",
+          zIndex: 0,
         }}
       />
 
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        <Grid container spacing={8}>
-          {/* ستون اول: درباره شرکت و لوگو */}
-          <Grid item xs={12} md={5}>
-            <img
+        <Grid container spacing={4} justifyContent="space-between" alignItems="flex-start">
+          
+          {/* ستون اول: لوگو (در LTR سمت چپ می‌افتد) */}
+          <Grid item xs={12} md={4} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+            <Box
+              component="img"
               src={growteclogo}
-              alt="سیستم هوشمند گلخانه"
-              style={{
-                width: "400px", // عرض نهایی
-                height: "180px", // ارتفاع نهایی
-                objectFit: "cover", // مشابه کراپ کردن عمل می‌کند
-                objectPosition: "center", // تعیین مرکز کراپ (مثلاً 'top' یا 'bottom')
+              alt="گروتک"
+              sx={{
+                width: "100%",
+                maxWidth: "200px",
+                height: "auto",
+                objectFit: "contain",
               }}
             />
           </Grid>
 
-          {/* ستون دوم: اطلاعات تماس */}
-          <Grid item xs={12} md={4}>
+          {/* ستون دوم: خدمات */}
+          <Grid item xs={12} sm={6} md={4}>
             <Typography
               variant="h6"
               color="white"
               fontWeight="bold"
               gutterBottom
-              sx={{
-                position: "relative",
-                pb: 1,
-                mb: 3,
-                display: "inline-block",
-                fontSize: "1.1rem",
-                "&::after": {
-                  content: '""',
-                  position: "absolute",
-                  bottom: 0,
-                  right: 0,
-                  width: "40%",
-                  height: 3,
-                  bgcolor: theme.palette.primary.main,
-                  borderRadius: 2,
-                },
-              }}
+              sx={{ mb: 2, textAlign: { xs: 'center', md: 'left' } }}
             >
-              دسترسی سریع
+              خدمات
             </Typography>
-            <Stack spacing={1.5}>
-              {[
-                "خانه",
-                "درباره ما",
-                "تماس با ما",
-                "پروژه‌ها",
-                "بلاگ",
-                "فرصت‌های شغلی",
-              ].map((item) => (
-                <Link
-                  key={item}
-                  href="#"
-                  underline="none"
+            <Stack spacing={1.5} sx={{ alignItems: { xs: 'center', md: 'flex-start' } }}>
+              {services.map((item, index) => (
+                <Typography
+                  key={index}
+                  variant="body2"
                   sx={{
+                    display: 'flex',
+                    alignItems: 'center',
                     color: alpha(theme.palette.common.white, 0.7),
-                    transition: "0.3s",
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "0.85rem",
-                    "&:hover": {
-                      color: theme.palette.primary.main,
-                      transform: "translateX(-5px)",
-                    },
                     "&::before": {
-                      content: '""',
-                      width: 4,
-                      height: 4,
-                      borderRadius: "50%",
-                      bgcolor: theme.palette.primary.main,
-                      mr: 1,
-                      opacity: 0.5,
-                    },
+                      content: '"•"',
+                      mr: 1, // در LTR فاصله باید از سمت راست بولت باشد تا به متن نچسبد
+                      fontSize: "1.2rem",
+                    }
                   }}
                 >
                   {item}
-                </Link>
+                </Typography>
               ))}
             </Stack>
           </Grid>
 
-          {/* ستون سوم: لینک‌های مفید */}
-          <Grid item xs={12} md={3}>
+          {/* ستون سوم: تماس */}
+          <Grid item xs={12} sm={6} md={4}>
             <Typography
               variant="h6"
               color="white"
               fontWeight="bold"
               gutterBottom
-              sx={{
-                position: "relative",
-                pb: 1,
-                mb: 3,
-                display: "inline-block",
-                fontSize: "1.1rem",
-                "&::after": {
-                  content: '""',
-                  position: "absolute",
-                  bottom: 0,
-                  right: 0,
-                  width: "40%",
-                  height: 3,
-                  bgcolor: theme.palette.primary.main,
-                  borderRadius: 2,
-                },
-              }}
+              sx={{ mb: 2, textAlign: { xs: 'center', md: 'left' } }}
             >
-              دسترسی سریع
+              تماس
             </Typography>
-            <Stack spacing={1.5}>
-              {[
-                "خانه",
-                "درباره ما",
-                "تماس با ما",
-                "پروژه‌ها",
-                "بلاگ",
-                "فرصت‌های شغلی",
-              ].map((item) => (
-                <Link
-                  key={item}
-                  href="#"
-                  underline="none"
+            <Stack spacing={1.5} sx={{ alignItems: { xs: 'center', md: 'flex-start' } }}>
+              {contacts.map((item, index) => (
+                <Typography
+                  key={index}
+                  variant="body2"
                   sx={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    textAlign: 'left', // چپ‌چین شدن متن
                     color: alpha(theme.palette.common.white, 0.7),
-                    transition: "0.3s",
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "0.85rem",
-                    "&:hover": {
-                      color: theme.palette.primary.main,
-                      transform: "translateX(-5px)",
-                    },
                     "&::before": {
-                      content: '""',
-                      width: 4,
-                      height: 4,
-                      borderRadius: "50%",
-                      bgcolor: theme.palette.primary.main,
-                      mr: 1,
-                      opacity: 0.5,
-                    },
+                      content: '"•"',
+                      mr: 1, // تنظیم فاصله بولت برای LTR
+                      fontSize: "1.2rem",
+                      lineHeight: 1.2,
+                    }
                   }}
                 >
                   {item}
-                </Link>
+                </Typography>
               ))}
             </Stack>
           </Grid>
         </Grid>
       </Container>
 
-      {/* نوار کپی‌رایت پایین */}
+      {/* نوار کپی‌رایت و شبکه‌های اجتماعی */}
       <Box
         sx={{
-          bgcolor: alpha("#000", 0.2),
+          bgcolor: alpha("#000", 0.3),
           py: 3,
           mt: 8,
           position: "relative",
@@ -220,7 +179,7 @@ const Footer: React.FC = () => {
       >
         <Container maxWidth="lg">
           <Stack
-            direction={{ xs: "column-reverse", md: "row" }}
+            direction={{ xs: "column-reverse", md: "row" }} // در LTR کپی‌رایت سمت چپ و آیکون‌ها راست می‌افتند
             justifyContent="space-between"
             alignItems="center"
             spacing={2}
@@ -229,25 +188,24 @@ const Footer: React.FC = () => {
               variant="caption"
               textAlign="center"
               color={alpha(theme.palette.common.white, 0.5)}
-              sx={{ fontSize: "0.7rem" }}
+              sx={{ fontSize: "0.7rem", direction: "rtl" }} // این یک خط باید RTL بماند تا متن فارسی به هم نریزد
             >
-              © ۱۴۰۴ کلیه حقوق مادی و معنوی این سایت متعلق به شرکت گروتک 
-               می‌باشد.
+              © ۱۴۰۴ کلیه حقوق مادی و معنوی این سایت متعلق به شرکت گروتک می‌باشد.
             </Typography>
 
             <Stack direction="row" spacing={1}>
               {[
-                <InstagramIcon />,
-                <TelegramIcon />,
-                <WhatsAppIcon />,
-                <LinkedInIcon />,
+                <InstagramIcon key="insta" />,
+                <TelegramIcon key="tele" />,
+                <WhatsAppIcon key="wa" />,
+                <LinkedInIcon key="in" />,
               ].map((icon, idx) => (
                 <IconButton
                   key={idx}
                   size="small"
                   sx={{
                     color: "white",
-                    bgcolor: alpha(theme.palette.common.white, 0.1),
+                    bgcolor: alpha(theme.palette.common.white, 0.05),
                     transition: "0.3s",
                     "&:hover": {
                       bgcolor: theme.palette.primary.main,
@@ -262,21 +220,21 @@ const Footer: React.FC = () => {
           </Stack>
         </Container>
 
-        {/* دکمه اسکرول به بالا */}
+        {/* دکمه اسکرول به بالا - در LTR باید سمت راست باشد */}
         <IconButton
           onClick={scrollToTop}
           sx={{
             position: "absolute",
             top: -24,
-            left: 40,
-            bgcolor: theme.palette.primary.main,
+            right: { xs: 16, md: 40 }, // تغییر از left به right
+            bgcolor: "#028c75",
             color: "white",
-            boxShadow: `0 8px 16px ${alpha(theme.palette.primary.main, 0.4)}`,
+            boxShadow: "0 8px 16px rgba(2, 140, 117, 0.4)",
             width: 48,
             height: 48,
             transition: "0.3s",
             "&:hover": {
-              bgcolor: theme.palette.primary.dark,
+              bgcolor: "#026e5b",
               transform: "translateY(-5px)",
             },
           }}

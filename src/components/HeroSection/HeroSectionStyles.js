@@ -24,7 +24,7 @@ export const HeroWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const BackgroundGradient = styled(Box)(({ theme }) => ({
+export const BackgroundGradient = styled(Box)({
   position: "absolute",
   top: 0,
   left: 0,
@@ -40,7 +40,7 @@ export const BackgroundGradient = styled(Box)(({ theme }) => ({
     )
   `,
   zIndex: 0,
-}));
+});
 
 export const ContentBox = styled(Box)(({ theme }) => ({
   position: "relative",
@@ -94,7 +94,7 @@ export const ImageBox = styled(Box)(({ theme }) => ({
 }));
 
 export const DescriptionBox = styled(Box)(({ theme }) => ({
-  // استفاده از rgba: سه عدد اول کد رنگ (خاکستری تیره) و عدد آخر میزان شفافیت پس‌زمینه (0.3)
+  // استفاده از rgba: سه عدد اول کد رنگ (خاکستری تیره) و عدد آخر میزان شفافیت پس‌زمینه (0.3) 
   backgroundColor: "rgba(128, 128, 128, 0.3)", 
   padding: theme.spacing(2), // پدینگ کمتر در موبایل
   borderRadius: "16px",
