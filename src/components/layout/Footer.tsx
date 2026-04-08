@@ -80,19 +80,28 @@ const Footer = () => {
       />
 
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        <Grid container spacing={4} justifyContent="space-between" alignItems="flex-start">
-          
+        <Grid
+          container
+          spacing={4}
+          justifyContent="space-between"
+          alignItems="flex-start"
+        >
           {/* ستون اول: لوگو (در LTR سمت چپ می‌افتد) */}
-          <Grid item xs={12} md={4} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            sx={{ textAlign: { xs: "center", md: "left" } }}
+          >
             <Box
               component="img"
               src={growteclogo}
               alt="گروتک"
               sx={{
-                width: "100%",
-                maxWidth: "200px",
-                height: "auto",
-                objectFit: "contain",
+                width: { xs: "70%", sm: "300px", md: "400px" },
+                height: { xs: "auto", md: "180px" },
+                objectFit: "cover",
+                objectPosition: "center",
               }}
             />
           </Grid>
@@ -104,24 +113,27 @@ const Footer = () => {
               color="white"
               fontWeight="bold"
               gutterBottom
-              sx={{ mb: 2, textAlign: { xs: 'center', md: 'left' } }}
+              sx={{ mb: 2, textAlign: { xs: "center", md: "left" } }}
             >
               خدمات
             </Typography>
-            <Stack spacing={1.5} sx={{ alignItems: { xs: 'center', md: 'flex-start' } }}>
+            <Stack
+              spacing={1.5}
+              sx={{ alignItems: { xs: "center", md: "flex-start" } }}
+            >
               {services.map((item, index) => (
                 <Typography
                   key={index}
-                  variant="body2"
+                  variant="body1"
                   sx={{
-                    display: 'flex',
-                    alignItems: 'center',
+                    display: "flex",
+                    alignItems: "center",
                     color: alpha(theme.palette.common.white, 0.7),
                     "&::before": {
                       content: '"•"',
                       mr: 1, // در LTR فاصله باید از سمت راست بولت باشد تا به متن نچسبد
                       fontSize: "1.2rem",
-                    }
+                    },
                   }}
                 >
                   {item}
@@ -137,26 +149,29 @@ const Footer = () => {
               color="white"
               fontWeight="bold"
               gutterBottom
-              sx={{ mb: 2, textAlign: { xs: 'center', md: 'left' } }}
+              sx={{ mb: 2, textAlign: { xs: "center", md: "left" } }}
             >
               تماس
             </Typography>
-            <Stack spacing={1.5} sx={{ alignItems: { xs: 'center', md: 'flex-start' } }}>
+            <Stack
+              spacing={1.5}
+              sx={{ alignItems: { xs: "center", md: "flex-start" } }}
+            >
               {contacts.map((item, index) => (
                 <Typography
                   key={index}
-                  variant="body2"
+                  variant="body1"
                   sx={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    textAlign: 'left', // چپ‌چین شدن متن
+                    display: "flex",
+                    alignItems: "flex-start",
+                    textAlign: "left", // چپ‌چین شدن متن
                     color: alpha(theme.palette.common.white, 0.7),
                     "&::before": {
                       content: '"•"',
                       mr: 1, // تنظیم فاصله بولت برای LTR
                       fontSize: "1.2rem",
                       lineHeight: 1.2,
-                    }
+                    },
                   }}
                 >
                   {item}
@@ -190,7 +205,8 @@ const Footer = () => {
               color={alpha(theme.palette.common.white, 0.5)}
               sx={{ fontSize: "0.7rem", direction: "rtl" }} // این یک خط باید RTL بماند تا متن فارسی به هم نریزد
             >
-              © ۱۴۰۴ کلیه حقوق مادی و معنوی این سایت متعلق به شرکت گروتک می‌باشد.
+              © ۱۴۰۴ کلیه حقوق مادی و معنوی این سایت متعلق به شرکت گروتک
+              می‌باشد.
             </Typography>
 
             <Stack direction="row" spacing={1}>
@@ -226,7 +242,7 @@ const Footer = () => {
           sx={{
             position: "absolute",
             top: -24,
-            right: { xs: 16, md: 40 }, // تغییر از left به right
+            left: { xs: 16, md: 60 }, // تغییر از left به right
             bgcolor: "#028c75",
             color: "white",
             boxShadow: "0 8px 16px rgba(2, 140, 117, 0.4)",

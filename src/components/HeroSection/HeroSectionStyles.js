@@ -1,22 +1,39 @@
 // src/components/HeroSection/HeroSectionStyles.js
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
+import { keyframes } from "@mui/system";
+
+// تعریف انیمیشن شناوری
+const floatingAnimation = keyframes`
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(10px, -12px);
+  }
+  50% {
+    transform: translate(-10px, -20px);
+  }
+  75% {
+    transform: translate(10px, -12px);
+  }
+`;
 
 export const HeroWrapper = styled(Box)(({ theme }) => ({
   position: "relative",
-  backgroundColor: "#1A1A1A", // رنگ پس زمینه Hero Section
-  minHeight: "calc(100vh - 80px)", // تنظیم برای یک صفحه شدن در موبایل (با در نظر گرفتن هدر)
+  backgroundColor: "#1A1A1A",
+  minHeight: "calc(100vh - 80px)",
   display: "flex",
-  direction: "ltr", // راست به چپ
+  direction: "ltr",
   flexDirection: "column",
   justifyContent: "center",
-  alignItems: "center", // در موبایل وسط چین
-  overflow: "hidden", // برای اینکه پس زمینه از کادر بیرون نزند
+  alignItems: "center",
+  overflow: "hidden",
   padding: theme.spacing(2),
   [theme.breakpoints.up("md")]: {
     minHeight: "80vh",
     marginTop: theme.spacing(1),
-    flexDirection: "row", // در دسکتاپ به صورت ردیفی
+    flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingLeft: theme.spacing(8),
@@ -31,13 +48,10 @@ export const BackgroundGradient = styled(Box)({
   width: "100%",
   height: "100%",
   background: `
-    radial-gradient(
-      ellipse 25% 65% at center,
-      #004d40 0%,
-      #00332b 30%,
-      #1A1A1A 70%,
-      #1A1A1A 100%
-    )
+    linear-gradient(to bottom, rgba(26, 26, 26, 1) 0%, rgba(26, 26, 26, 0) 35%, rgba(26, 26, 26, 0) 65%, rgba(26, 26, 26, 1) 100%),
+    radial-gradient(circle at 10% 90%, rgba(2, 132, 106, 0.8) 0%, rgba(0, 0, 0, 0) 50%),
+    radial-gradient(circle at 85% 50%, rgba(10, 54, 30, 0.8) 0%, rgba(0, 0, 0, 0) 50%),
+    rgba(26, 26, 26, 1)
   `,
   zIndex: 0,
 });
@@ -49,14 +63,14 @@ export const ContentBox = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  alignItems: "center", // در موبایل وسط چین
+  alignItems: "center",
   color: theme.palette.text.primary,
   textAlign: "center",
   width: "100%",
   [theme.breakpoints.up("md")]: {
     textAlign: "center",
     alignItems: "center",
-    width: "45%", // عرض ستون متن در دسکتاپ
+    width: "45%",
   },
 }));
 
@@ -75,9 +89,10 @@ export const ImageBox = styled(Box)(({ theme }) => ({
   },
   "& img": {
     maxWidth: "100%",
-    maxHeight: "70vh", // در موبایل ارتفاع تصویر محدود می‌شود تا در یک صفحه جا شود
+    maxHeight: "70vh",
     objectFit: "contain",
     display: "block",
+    animation: `${floatingAnimation} 12s ease-in-out infinite`,
     [theme.breakpoints.up("md")]: {
       maxHeight: "none",
       clipPath: "inset(30px 0px 30px 0px)",
@@ -94,13 +109,12 @@ export const ImageBox = styled(Box)(({ theme }) => ({
 }));
 
 export const DescriptionBox = styled(Box)(({ theme }) => ({
-  // استفاده از rgba: سه عدد اول کد رنگ (خاکستری تیره) و عدد آخر میزان شفافیت پس‌زمینه (0.3) 
   backgroundColor: "rgba(128, 128, 128, 0.3)", 
-  padding: theme.spacing(2), // پدینگ کمتر در موبایل
+  padding: theme.spacing(2),
   borderRadius: "16px",
   marginTop: theme.spacing(2),
   opacity: 1, 
-  textAlign: "center", // در موبایل وسط چین
+  textAlign: "center",
   color: "#b4b2b2", 
   backdropFilter: "blur(10px)", 
   border: "1px solid rgba(255, 255, 255, 0.01)", 
