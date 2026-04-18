@@ -1,6 +1,7 @@
 // src/components/HeroSection/HeroSection.jsx
 import React, { useState, useEffect } from "react";
-import { Typography, Fade } from "@mui/material";
+import { Typography, Fade, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import {
   HeroWrapper,
   BackgroundGradient,
@@ -71,6 +72,9 @@ const HeroSection = () => {
 
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % pointersData.length);
@@ -98,20 +102,19 @@ const HeroSection = () => {
           <br />
           تغذیه و کنترل اقلیم
         </Typography>
-        <DescriptionBox>
-          <Typography
-            variant="h6"
-            sx={{
-              lineHeight: { xs: 1.5, md: 1.75 },
-              fontSize: { xs: "0.875rem", sm: "1rem", md: "1.25rem" },
-            }}
-          >
-            سیستم گرولاین از شرکت گروتک با آنالیز لحظه‌ای پارامترهای تغذیه و
-            اقلیم، امکان شخصی‌سازی کامل متناسب با تجهیزات گلخانه شما را فراهم
-            می‌کند. همچنین دارای مکانیزم دوزینگ ماژولار قابل ارتقا تا ۱۲ استوک
-            بوده و قابلیت کنترل و مدیریت از راه دور را ارائه می‌دهد.
-          </Typography>
-        </DescriptionBox>
+        {!isMobile && (
+          <DescriptionBox>
+            <Typography
+              variant="h6"
+              sx={{
+                lineHeight: { xs: 1.5, md: 1.75 },
+                fontSize: { xs: "0.875rem", sm: "1rem", md: "1.25rem" },
+              }}
+            >
+              سیستم گرولاین از شرکت گروتک با آنالیز لحظه‌ای پارامترهای تغذیه و اقلیم، امکان شخصی‌سازی کامل متناسب با تجهیزات گلخانه شما را فراهم می‌کند. همچنین دارای مکانیزم دوزینگ ماژولار قابل ارتقا تا ۱۲ استوک بوده و قابلیت کنترل و مدیریت از راه دور را ارائه می‌دهد.
+            </Typography>
+          </DescriptionBox>
+        )}
       </ContentBox>
 
       <ImageBox>

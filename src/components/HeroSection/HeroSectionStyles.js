@@ -25,7 +25,7 @@ export const HeroWrapper = styled(Box)(({ theme }) => ({
   position: "relative",
   backgroundColor: "#1A1A1A",
   // ✅ اصلاح: حذف فاصله اضافی و استفاده از 100vh یا مقدار مناسب
-  minHeight: "70vh", 
+  minHeight: "60vh", 
   display: "flex",
   direction: "ltr",
   flexDirection: "column",
@@ -71,6 +71,7 @@ export const ContentBox = styled(Box)(({ theme }) => ({
   color: theme.palette.text.primary,
   textAlign: "center",
   width: "100%",
+  marginBottom: 0, // ✅ حذف فاصله از پایین در موبایل
   [theme.breakpoints.up("md")]: {
     textAlign: "center",
     alignItems: "center",
@@ -83,6 +84,7 @@ export const DescriptionBox = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
   borderRadius: "16px",
   marginTop: theme.spacing(2),
+  marginBottom: 0, // ✅ حذف فاصله از پایین در موبایل
   textAlign: "center",
   color: "#b4b2b2",
   backdropFilter: "blur(10px)",
@@ -98,7 +100,7 @@ export const DescriptionBox = styled(Box)(({ theme }) => ({
 export const ImageBox = styled(Box)(({ theme }) => ({
   position: "relative",
   zIndex: 1,
-  marginTop: theme.spacing(2),
+  marginTop: theme.spacing(-4), // ✅ استفاده از مارجین منفی برای کشیدن عکس بالاتر در موبایل
   width: "90%", // 🟢 در موبایل عرض عکس کمی کمتر شود تا ارتفاع هم کم شود
   maxWidth: "500px", // 🟢 جلوگیری از بزرگ شدن بیش از حد در تبلت
   display: "flex",
