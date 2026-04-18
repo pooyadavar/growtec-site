@@ -17,9 +17,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import growteclogo from "../../assets/svg/logo growtec.svg";
 
 const menuItems = [
+  "تور مجازی محصولات",
   "آخرین پروژه‌ها",
-  "تور مجازی",
-  "خدمات و محصولات",
+  // "خدمات و محصولات",
   "درباره ما",
   "تماس با ما",
 ];
@@ -43,32 +43,47 @@ const Navbar = () => {
     >
       <Toolbar
         disableGutters
-        sx={{ 
-          justifyContent: "space-between", 
-          direction: "ltr" 
+        sx={{
+          justifyContent: "space-between", // تغییر به space-between
+          alignItems: "center",
+          direction: "ltr",
+          width: "100%",
         }}
       >
-        {/* لوگو - با ابعاد و استایل دقیق خودت، اما محافظت شده برای موبایل */}
         <Box
-          component="img"
-          src={growteclogo}
-          alt="سیستم هوشمند گلخانه"
           sx={{
-            width: { xs: "70%", sm: "300px", md: "400px" }, 
-            height: { xs: "auto", md: "180px" },
-            objectFit: "cover",
-            objectPosition: "center",
+            width: { xs: "50%", md: "300px" },
+            height: { xs: "130px", md: "180px" },
+            overflow: "hidden", // این خط کلید حل مشکل است: هرچه بیرون کادر رفت را مخفی میکند
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-start", // اگر سایت راست‌چین است و می‌خواهید سمت راست باشد، این را به flex-end تغییر دهید
           }}
-        />
+        >
+          {/* خود لوگو که داخل کادر زوم می‌شود */}
+          <Box
+            component="img"
+            src={growteclogo}
+            alt="سیستم هوشمند گلخانه"
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit: { xs: "cover", md: "contain" },
+              // حالا با خیال راحت زوم کنید، چون بیرون‌زدگی‌ها توسط کانتینر پدر مخفی می‌شوند
+              transform: { xs: "scale(1.4)", md: "scale(2.7)" },
+              transformOrigin: "center center", // زوم از مرکز انجام شود تا متقارن باشد
+            }}
+          />
+        </Box>
 
         {/* دکمه همبرگری برای موبایل */}
         <IconButton
           color="inherit"
           aria-label="open drawer"
-          edge="start"
+          edge="end" // تغییر به end
           onClick={handleDrawerToggle}
-          sx={{ 
-            display: { md: "none" }, 
+          sx={{
+            display: { md: "none" },
             color: "#333",
           }}
         >
@@ -81,7 +96,12 @@ const Navbar = () => {
             <Button
               key={item}
               sx={{
-                fontSize: { xs: "0.9rem", md: "1rem" , sm: "0.7rem" , lg: "1.2rem"},
+                fontSize: {
+                  xs: "0.9rem",
+                  md: "1rem",
+                  sm: "0.7rem",
+                  lg: "1.2rem",
+                },
                 color: theme.palette.text.primary,
                 mx: 1,
                 fontFamily: theme.typography.fontFamily,
@@ -106,11 +126,11 @@ const Navbar = () => {
         onClose={handleDrawerToggle}
         sx={{
           display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": { 
-            boxSizing: "border-box", 
-            width: 250, 
-            direction: "rtl", 
-            backgroundColor: "#f8faff"
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: 250,
+            direction: "rtl",
+            backgroundColor: "#f8faff",
           },
         }}
       >
@@ -119,13 +139,13 @@ const Navbar = () => {
             {menuItems.map((item) => (
               <ListItem key={item} disablePadding>
                 <ListItemButton sx={{ textAlign: "right", py: 2 }}>
-                  <ListItemText 
-                    primary={item} 
+                  <ListItemText
+                    primary={item}
                     primaryTypographyProps={{
                       fontFamily: theme.typography.fontFamily,
                       fontWeight: 600,
                       color: "#333",
-                    }} 
+                    }}
                   />
                 </ListItemButton>
               </ListItem>

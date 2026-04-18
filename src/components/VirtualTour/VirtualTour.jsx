@@ -35,9 +35,9 @@ const VirtualTour = () => {
           variant="h2" 
           sx={{ 
             fontWeight: 900, 
-            mb: 4, 
-            lineHeight: 1.5,
-            fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } // Responsive font size
+            mb: { xs: 2, sm: 3, md: 4 }, // فاصله کمتر در موبایل
+            lineHeight: { xs: 1.3, sm: 1.4, md: 1.5 }, // خطوط جمع‌وجورتر در موبایل
+            fontSize: { xs: '1.4rem', sm: '2.2rem', md: '3rem' } // سایز مناسب برای موبایل
           }}
         >
           تور واقعیت مجازی <br /> اکوسیستم گروتک
@@ -48,10 +48,10 @@ const VirtualTour = () => {
             backgroundColor: '#fff',
             color: '#000',
             borderRadius: '50px',
-            px: 6,
-            py: 1.5,
+            px: { xs: 4, md: 6 }, // پدینگ کمتر در موبایل
+            py: { xs: 1, md: 1.5 },
             fontWeight: 'bold',
-            fontSize: '1.1rem',
+            fontSize: { xs: '0.9rem', md: '1.1rem' }, // فونت دکمه متناسب با موبایل
             '&:hover': { backgroundColor: '#f0f0f0' }
           }}
         >

@@ -6,7 +6,6 @@ import {
   ProjectsWrapper,
   ProjectCard,
   ScrollContainer,
-  CustomNavButton,
 } from "./ProjectsSliderStyles";
 
 const ProjectsSlider = ({ projects }) => {
@@ -38,35 +37,44 @@ const ProjectsSlider = ({ projects }) => {
     };
   }, [checkScroll, projects]);
 
-  const handleSlide = (direction) => {
+  const handleSlide = useCallback((direction) => {
     const el = scrollRef.current;
     if (!el) return;
     const sign = direction === "next" ? -1 : 1;
     el.scrollBy({ left: sign * el.clientWidth, behavior: "smooth" });
-  };
+  }, []);
 
-  const goToIndex = (i) => {
+  const goToIndex = useCallback((i) => {
     const el = scrollRef.current;
     if (!el) return;
     el.scrollTo({ left: -i * el.clientWidth, behavior: "smooth" });
-  };
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (activeIndex >= projects.length - 1) {
+        goToIndex(0);
+      } else {
+        handleSlide("next");
+      }
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [activeIndex, projects.length, handleSlide, goToIndex]);
 
   const NavButton = ({ direction, disabled, onClick }) => (
     <Box
       onClick={onClick}
       sx={{
+        display: { xs: "none", md: "flex" },
         position: "absolute",
-        top: { xs: "auto", md: "50%" }, // <--- تنظیم فلش‌ها وسط ارتفاع کارت
-        transform: { xs: "none", md: "translateY(-50%)" },
-        bottom: { xs: "-60px", md: "auto" },
-        ...(direction === "prev"
-          ? { right: { xs: "calc(50% - 60px)", md: "-60px" } }
-          : { left: { xs: "calc(50% - 60px)", md: "-60px" } }),
+        top: "50%",
+        transform: "translateY(-50%)",
+        ...(direction === "prev" ? { right: "-60px" } : { left: "-60px" }),
         zIndex: 10,
         width: 48,
         height: 48,
         borderRadius: "50%",
-        display: "flex",
         alignItems: "center",
         justifyContent: "center",
         cursor: disabled ? "default" : "pointer",
@@ -78,7 +86,7 @@ const ProjectsSlider = ({ projects }) => {
         color: "#fff",
         "&:hover": !disabled && {
           background: "rgba(255,255,255,0.18)",
-          transform: { xs: "scale(1.1)", md: "translateY(-50%) scale(1.1)" },
+          transform: "translateY(-50%) scale(1.1)",
           boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
         },
       }}
@@ -98,7 +106,7 @@ const ProjectsSlider = ({ projects }) => {
           variant="h3"
           sx={{
             fontWeight: 900,
-            mb: 6,
+            mb: { xs: 4, md: 6 },
             textAlign: "center",
             color: "#fff",
             fontSize: { xs: "1.5rem", md: "2.5rem" },
@@ -109,20 +117,12 @@ const ProjectsSlider = ({ projects }) => {
         </Typography>
 
         <Box sx={{ position: "relative" }}>
-          <NavButton
-            direction="prev"
-            disabled={!canScrollPrev}
-            onClick={() => handleSlide("prev")}
-          />
-          <NavButton
-            direction="next"
-            disabled={!canScrollNext}
-            onClick={() => handleSlide("next")}
-          />
+          <NavButton direction="prev" disabled={!canScrollPrev} onClick={() => handleSlide("prev")} />
+          <NavButton direction="next" disabled={!canScrollNext} onClick={() => handleSlide("next")} />
 
           <ScrollContainer ref={scrollRef}>
             {projects.map((project, index) => (
-              <Box key={index} sx={{ minWidth: "100%", px: { xs: 2, md: 0 } }}>
+              <Box key={index} sx={{ minWidth: "100%", px: { xs: 1, md: 0 } }}>
                 <ProjectCard 
                   elevation={0}
                   sx={{
@@ -131,19 +131,19 @@ const ProjectsSlider = ({ projects }) => {
                     display: "flex",
                     flexDirection: { xs: "column", md: "row" },
                     alignItems: "stretch",
-                    height: { xs: "auto", md: "400px" } // <--- ارتفاع کنترل و محدود شد (می‌توانید عدد 400 را بسته به سلیقه تغییر دهید)
+                    height: { xs: "280px", sm: "300px", md: "400px" }, // ارتفاع برای جا شدن متن در موبایل کمی بیشتر شد
+                    position: "relative"
                   }}
                 >
-
-                  {/* Text Section - 50% */}
+                  {/* بخش متن دسکتاپ - در موبایل مخفی می‌شود */}
                   <Box
                     sx={{
-                      width: { xs: "100%", md: "50%" },
-                      padding: { xs: 3, md: 4 },
+                      display: { xs: "none", md: "flex" },
+                      width: "50%",
+                      padding: 4,
                       textAlign: "left",
                       direction: "ltr",
                       color: "#fff",
-                      display: "flex",
                       flexDirection: "column",
                       justifyContent: "center",
                     }}
@@ -152,8 +152,8 @@ const ProjectsSlider = ({ projects }) => {
                       variant="h3"
                       sx={{
                         fontWeight: 800,
-                        mb: { xs: 2, md: 3 },
-                        fontSize: { xs: "1.5rem", md: "2.2rem" },
+                        mb: 3,
+                        fontSize: "2.2rem",
                         background: "linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
@@ -170,13 +170,7 @@ const ProjectsSlider = ({ projects }) => {
                       <Typography
                         key={label}
                         variant="h5"
-                        sx={{
-                          fontSize: { xs: "0.95rem", md: "1.1rem" },
-                          mb: 0.5,
-                          color: "rgba(255,255,255,0.85)",
-                          display: "flex",
-                          gap: 1,
-                        }}
+                        sx={{ fontSize: "1.1rem", mb: 0.5, color: "rgba(255,255,255,0.85)", display: "flex", gap: 1 }}
                       >
                         <Box component="span" sx={{ color: "rgba(255,255,255,0.45)", minWidth: 60 }}>
                           {label}
@@ -186,41 +180,64 @@ const ProjectsSlider = ({ projects }) => {
                     ))}
 
                     <Typography
-                      sx={{
-                        mt: 2,
-                        color: "rgba(255,255,255,0.55)",
-                        lineHeight: 1.8,
-                        fontSize: { xs: "0.875rem", md: "0.95rem" },
-                        borderTop: "1px solid rgba(255,255,255,0.1)",
-                        pt: 2,
-                      }}
+                      sx={{ mt: 2, color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem", borderTop: "1px solid rgba(255,255,255,0.1)", pt: 2 }}
                     >
                       {project.description}
                     </Typography>
                   </Box>
-                  {/* Image Section - 50% */}
+
+                  {/* بخش تصویر */}
                   <Box
                     sx={{
                       width: { xs: "100%", md: "50%" },
-                      height: { xs: "250px", md: "100%" }, // در موبایل 250px و در دسکتاپ تمام ارتفاع
+                      height: "100%",
                       position: "relative",
                       overflow: "hidden",
-                      "&:hover img": {
-                        transform: "scale(1.08)",
-                      },
                     }}
                   >
                     <img 
                       src={project.image} 
                       alt={project.clientName}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                        transition: "transform 0.6s ease",
-                      }}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                     />
+                    
+                    {/* ✅ نمایش اسم پروژه و جزئیات روی عکس، فقط در موبایل */}
+                    <Box
+                      sx={{
+                        display: { xs: "flex", md: "none" },
+                        position: "absolute",
+                        bottom: 0, left: 0, right: 0,
+                        padding: "30px 16px 16px 16px",
+                        background: "linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0) 100%)",
+                        flexDirection: "column",
+                        justifyContent: "flex-end",
+                        alignItems: "flex-end", // راست‌چین
+                        direction: "rtl", // برای متون فارسی
+                      }}
+                    >
+                      <Typography variant="h6" sx={{ color: "#fff", fontWeight: "bold", mb: 1 }}>
+                        {project.clientName}
+                      </Typography>
+                      
+                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, width: "100%" }}>
+                        {[
+                          { label: "استان", value: project.province },
+                          { label: "متراژ", value: project.area },
+                          { label: "محصول", value: project.product },
+                        ].map(({ label, value }) => (
+                          <Typography
+                            key={label}
+                            variant="body2"
+                            sx={{ color: "rgba(255,255,255,0.9)", fontSize: "0.85rem", display: "flex", gap: 1 }}
+                          >
+                            <Box component="span" sx={{ color: "rgba(255,255,255,0.5)" }}>
+                              {label}:
+                            </Box>
+                            {value}
+                          </Typography>
+                        ))}
+                      </Box>
+                    </Box>
                   </Box>
 
                 </ProjectCard>
@@ -229,7 +246,7 @@ const ProjectsSlider = ({ projects }) => {
           </ScrollContainer>
         </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 1, mt: { xs: 8, md: 4 } }}>
+        <Box sx={{ display: "flex", justifyContent: "center", gap: 1, mt: { xs: 4, md: 4 } }}>
           {projects.map((_, i) => (
             <Box
               key={i}
@@ -241,7 +258,6 @@ const ProjectsSlider = ({ projects }) => {
                 background: i === activeIndex ? "#fff" : "rgba(255,255,255,0.3)",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
-                "&:hover": { background: "rgba(255,255,255,0.7)" },
               }}
             />
           ))}

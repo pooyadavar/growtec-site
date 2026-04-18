@@ -17,6 +17,8 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
+
+
 const Footer = () => {
   const theme = useTheme();
 
@@ -92,6 +94,7 @@ const Footer = () => {
             xs={12}
             md={4}
             sx={{ textAlign: { xs: "center", md: "left" } }}
+            display={{xs : "none" , lg:"block"}}
           >
             <Box
               component="img"

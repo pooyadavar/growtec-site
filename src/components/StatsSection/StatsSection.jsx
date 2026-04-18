@@ -19,33 +19,41 @@ const statData = [
 const e2p = (s) => s.toString().replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
 
 const StatsSection = () => {
-  // استفاده از این هوک برای تشخیص اینکه کاربر به این بخش رسیده یا نه
   const { ref, inView } = useInView({
-    triggerOnce: true, // فقط یک بار انیمیشن اجرا شود
-    threshold: 0.2, // وقتی ۲۰ درصد بخش دیده شد شروع کن
+    triggerOnce: true,
+    threshold: 0.2,
   });
 
   return (
     <StatsWrapper ref={ref}>
       <Container maxWidth="lg">
-        <Grid container spacing={4} justifyContent="space-around">
+        {/* فاصله را در موبایل کمتر کردیم تا آیتم‌ها بهتر جا شوند */}
+        <Grid container spacing={{ xs: 2, sm: 4 }} justifyContent="space-around">
           {statData.map((item) => (
-            <Grid item xs={12} sm={6} md={3} key={item.id}>
+            // ✅ تغییر xs={12} به xs={6} برای نمایش دوتایی در موبایل
+            <Grid item xs={6} sm={6} md={3} key={item.id}>
               <StatItem>
                 <IconWrapper>
                   <img
                     src={item.icon}
                     alt={item.title}
-                    style={{ scale: "1.2" }}
                   />
                 </IconWrapper>
-                <Typography variant="h3" sx={{ fontWeight: 900, mb: 1, fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }}>
+                <Typography 
+                  variant="h3" 
+                  sx={{ 
+                    fontWeight: 900, 
+                    mb: { xs: 0.5, md: 1 }, 
+                    // سایز فونت عدد برای موبایل بهینه شد
+                    fontSize: { xs: '1.4rem', sm: '2rem', md: '3rem' } 
+                  }}
+                >
                   {inView ? (
                     <CountUp
                       start={0}
                       end={item.value}
                       duration={2.5}
-                      formattingFn={(value) => `+${e2p(value)}`} // تبدیل عدد به فارسی و اضافه کردن پلاس
+                      formattingFn={(value) => `+${e2p(value)}`}
                       useEasing={true}
                     />
                   ) : (
@@ -54,7 +62,12 @@ const StatsSection = () => {
                 </Typography>
                 <Typography
                   variant="body1"
-                  sx={{ fontWeight: 500, opacity: 0.9, fontSize: { xs: '0.875rem', sm: '1rem', md: '1.125rem' } }}
+                  sx={{ 
+                    fontWeight: 500, 
+                    opacity: 0.9, 
+                    // سایز فونت عنوان برای حالت دوتایی موبایل کوچکتر شد تا دو خطی نشود
+                    fontSize: { xs: '0.75rem', sm: '0.9rem', md: '1.125rem' } 
+                  }}
                 >
                   {item.title}
                 </Typography>
