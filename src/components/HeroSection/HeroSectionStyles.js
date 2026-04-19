@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import { keyframes } from "@mui/system";
+import { Scale } from "@mui/icons-material";
 
 const floatingAnimation = keyframes`
   0%, 100% { transform: translateY(0px); }
@@ -24,8 +25,7 @@ const ringExpandAnimation = keyframes`
 export const HeroWrapper = styled(Box)(({ theme }) => ({
   position: "relative",
   backgroundColor: "#1A1A1A",
-  // ✅ اصلاح: حذف فاصله اضافی و استفاده از 100vh یا مقدار مناسب
-  minHeight: "60vh", 
+  minHeight: "auto", // Set minHeight to auto for mobile
   display: "flex",
   direction: "ltr",
   flexDirection: "column",
@@ -33,10 +33,11 @@ export const HeroWrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
   overflow: "hidden",
   padding: theme.spacing(2),
-  marginTop: 0, // ✅ اطمینان از عدم وجود فاصله از بالا
+  marginTop: 0,
+  gap: theme.spacing(4),
   [theme.breakpoints.up("md")]: {
-    minHeight: "60vh", // یا هر مقداری که مناسب دیزاین شماست
-    marginTop: 0, // ✅ حذف مارجین بالا
+    minHeight: "60vh",
+    marginTop: 0,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -66,16 +67,17 @@ export const ContentBox = styled(Box)(({ theme }) => ({
   direction: "ltr",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
+  justifyContent: "flex-start", // Changed to flex-start for mobile
   alignItems: "center",
   color: theme.palette.text.primary,
   textAlign: "center",
   width: "100%",
-  marginBottom: 0, // ✅ حذف فاصله از پایین در موبایل
+  marginBottom: theme.spacing(4),
   [theme.breakpoints.up("md")]: {
     textAlign: "center",
     alignItems: "center",
-    width: "40%", // 🟢 عرض متن را از 45 به 40 کم کردیم
+    width: "40%",
+    justifyContent: "center", // Keep center for larger screens
   },
 }));
 
@@ -84,7 +86,7 @@ export const DescriptionBox = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
   borderRadius: "16px",
   marginTop: theme.spacing(2),
-  marginBottom: 0, // ✅ حذف فاصله از پایین در موبایل
+  marginBottom: 0,
   textAlign: "center",
   color: "#b4b2b2",
   backdropFilter: "blur(10px)",
@@ -100,19 +102,17 @@ export const DescriptionBox = styled(Box)(({ theme }) => ({
 export const ImageBox = styled(Box)(({ theme }) => ({
   position: "relative",
   zIndex: 1,
-  marginTop: theme.spacing(-4), // ✅ استفاده از مارجین منفی برای کشیدن عکس بالاتر در موبایل
-  width: "90%", // 🟢 در موبایل عرض عکس کمی کمتر شود تا ارتفاع هم کم شود
-  maxWidth: "500px", // 🟢 جلوگیری از بزرگ شدن بیش از حد در تبلت
+  width: "80%", // Further reduce width for mobile
+  maxWidth: "500px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   [theme.breakpoints.up("md")]: {
     marginTop: 0,
-    width: "45%", // 🟢 عرض عکس در دسکتاپ را از 50 به 45 کم کردیم تا ارتفاعش کمتر شود
+    width: "45%",
     maxWidth: "800px",
   },
 }));
-
 export const FloatingContainer = styled(Box)({
   position: "relative",
   width: "100%",
@@ -126,12 +126,14 @@ export const RelativeWrapper = styled(Box)({
   width: "100%",
   lineHeight: 0, 
 
+
   "& .main-image": {
     display: "block",
     width: "100%",
     height: "auto", 
     filter: "brightness(0.75) contrast(1.1) grayscale(10%)",
     transition: "all 0.8s ease-in-out",
+
   },
 });
 
