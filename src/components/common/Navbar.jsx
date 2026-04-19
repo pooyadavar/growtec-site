@@ -17,19 +17,25 @@ import MenuIcon from "@mui/icons-material/Menu";
 import growteclogo from "../../assets/svg/logo growtec.svg";
 
 const menuItems = [
-  "تور مجازی محصولات",
-  "آخرین پروژه‌ها",
-  // "خدمات و محصولات",
-  "درباره ما",
-  "تماس با ما",
+  { text: "خانه", id: "hero-section" },
+  { text: "تور مجازی محصولات", id: "virtual-tour-section" },
+  { text: "آخرین پروژه‌ها", id: "projects-section" },
+
+  { text: "درباره ما", id: "about-us-section" },
+  { text: "تماس با ما", id: "contact-us-section" },
 ];
 
-const Navbar = () => {
+const Navbar = ({ onScrollToSection }) => {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleNavItemClick = (id) => {
+    onScrollToSection(id);
+    setMobileOpen(false); // Close drawer on mobile after clicking
   };
 
   return (
@@ -94,7 +100,8 @@ const Navbar = () => {
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
           {menuItems.map((item) => (
             <Button
-              key={item}
+              key={item.id}
+              onClick={() => handleNavItemClick(item.id)}
               sx={{
                 fontSize: {
                   xs: "0.9rem",
@@ -113,7 +120,7 @@ const Navbar = () => {
                 },
               }}
             >
-              {item}
+              {item.text}
             </Button>
           ))}
         </Box>
@@ -137,10 +144,13 @@ const Navbar = () => {
         <Box onClick={handleDrawerToggle} sx={{ textAlign: "right", pt: 4 }}>
           <List>
             {menuItems.map((item) => (
-              <ListItem key={item} disablePadding>
-                <ListItemButton sx={{ textAlign: "right", py: 2 }}>
+              <ListItem key={item.id} disablePadding>
+                <ListItemButton
+                  sx={{ textAlign: "right", py: 2 }}
+                  onClick={() => handleNavItemClick(item.id)}
+                >
                   <ListItemText
-                    primary={item}
+                    primary={item.text}
                     primaryTypographyProps={{
                       fontFamily: theme.typography.fontFamily,
                       fontWeight: 600,

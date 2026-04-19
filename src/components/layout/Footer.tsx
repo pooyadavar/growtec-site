@@ -19,7 +19,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 
 
-const Footer = () => {
+const Footer = ({ id }: { id?: string }) => {
   const theme = useTheme();
 
   const scrollToTop = () => {
@@ -41,6 +41,7 @@ const Footer = () => {
 
   return (
     <Box
+      id={id}
       component="footer"
       sx={{
         bgcolor: theme.palette.background.default,

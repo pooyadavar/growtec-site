@@ -36,11 +36,11 @@ export const HeroWrapper = styled(Box)(({ theme }) => ({
   marginTop: 0,
   gap: theme.spacing(4),
   [theme.breakpoints.up("md")]: {
-    minHeight: "60vh",
+    minHeight: "auto",
     marginTop: 0,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "start",
     paddingLeft: theme.spacing(8),
     paddingRight: theme.spacing(8),
   },
@@ -67,17 +67,19 @@ export const ContentBox = styled(Box)(({ theme }) => ({
   direction: "ltr",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "flex-start", // Changed to flex-start for mobile
+  justifyContent: "center", // Changed to center for mobile
   alignItems: "center",
   color: theme.palette.text.primary,
   textAlign: "center",
-  width: "100%",
+  width: "90%", // Adjusted width for mobile
   marginBottom: theme.spacing(4),
+  padding: theme.spacing(1), // Added padding for mobile
   [theme.breakpoints.up("md")]: {
-    textAlign: "center",
-    alignItems: "center",
+    textAlign: "left", // Changed to left for larger screens
+    alignItems: "flex-start", // Changed to flex-start for larger screens
     width: "40%",
-    justifyContent: "center", // Keep center for larger screens
+    justifyContent: "center",
+    padding: theme.spacing(2), // Adjusted padding for larger screens
   },
 }));
 
@@ -175,10 +177,10 @@ export const PointerImage = styled("img")(({ theme }) => ({
 
 export const FeatureCard = styled(Box)(({ theme }) => ({
   position: "absolute",
-  bottom: "12%",
+  bottom: "3%", // پیش‌فرض (xs)
   right: "2%",
-  width: "60%", // Increased width for desktop
-  backgroundColor: "rgba(20,20,20,0.75)",
+  width: "100%",
+  backgroundColor: "rgba(20,20,20,0.4)",
   backdropFilter: "blur(12px)",
   border: "1px solid rgba(2,132,106,0.3)",
   borderRadius: "16px",
@@ -187,8 +189,23 @@ export const FeatureCard = styled(Box)(({ theme }) => ({
   direction: "ltr",
   textAlign: "left",
   zIndex: 30,
+
+  [theme.breakpoints.up("sm")]: {
+    bottom: "-20%",
+  },
+
+  [theme.breakpoints.up("md")]: {
+    bottom: "0%",
+  },
+
+  [theme.breakpoints.up("lg")]: {
+    bottom: "-10%",
+  },
+
   [theme.breakpoints.down("sm")]: {
-    width: "70%", // Increased width for mobile
+    width: "90%",
+    left: "50%",
+    transform: "translateX(-50%)",
     padding: theme.spacing(1),
   },
 }));

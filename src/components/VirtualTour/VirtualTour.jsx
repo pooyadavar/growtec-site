@@ -8,7 +8,7 @@ const videoSources = [
   '/videos/TourPreview02.mp4'
 ];
 
-const VirtualTour = () => {
+const VirtualTour = ({ id }) => {
   const [currentIdx, setCurrentIdx] = useState(0);
 
   const handleVideoEnd = () => {
@@ -17,7 +17,7 @@ const VirtualTour = () => {
   };
 
   return (
-    <TourWrapper>
+    <TourWrapper id={id}>
       <VideoBackground 
         key={currentIdx} // این خط باعث می‌شه با تغییر ویدیو، المان رفرش بشه
         autoPlay 

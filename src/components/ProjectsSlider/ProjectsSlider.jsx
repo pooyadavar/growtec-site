@@ -21,7 +21,7 @@ import bajelani1 from "../../assets/images/projects/bajelani1.jpeg";
 import bajelani2 from "../../assets/images/projects/bajelani2.jpeg";
 import ProjectImageRotator from "./ProjectImageRotator";
 
-const ProjectsSlider = () => {
+const ProjectsSlider = ({ id }) => {
   const scrollRef = useRef(null);
   const [canScrollNext, setCanScrollNext] = useState(true);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
@@ -153,7 +153,7 @@ const ProjectsSlider = () => {
 
 
   return (
-    <ProjectsWrapper>
+    <ProjectsWrapper id={id}>
       <Container maxWidth="lg" sx={{ position: "relative", overflow: "visible" }}>
         <Typography
           variant="h3"

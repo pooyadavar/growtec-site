@@ -22,7 +22,7 @@ const GROUPED_CONTENT = {
   desc: "سیستم تجمیع شده هوشمند کنترل اقلیم و آبیاری گلخانه که با سنجش لحظه‌ای دما، رطوبت، CO2، نور و باد، شرایط بهینه رشد را به‌طور خودمار حفظ می‌کند. این دستگاه ضمن کنترل فن‌ها، هیترها و آبیاری بر اساس نیاز واقعی گیاه، تا ۲۰٪ عملکرد محصول را افزایش و ۳۰٪ مصرف آب را کاهش می‌دهد.",
 };
 
-const HeroSection = () => {
+const HeroSection = ({ id }) => {
   const pointersData = [
     {
       id: 1,
@@ -119,7 +119,7 @@ const HeroSection = () => {
   const isGroupedPointer = (id) => GROUPED_POINTER_IDS.includes(id);
 
   return (
-    <HeroWrapper>
+    <HeroWrapper id={id}>
       <BackgroundGradient />
 
       <ContentBox>

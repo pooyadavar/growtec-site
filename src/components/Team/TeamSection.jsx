@@ -34,11 +34,11 @@ const teamMembers = [
   { id: 8, name: "محمدرضا شعبانعلی زاده", role: "مدیر تولید", image: shaban },
 ];
 
-const TeamSection = () => {
+const TeamSection = ({ id }) => {
   const scrollRef = useRef(null);
 
   return (
-    <TeamWrapper>
+    <TeamWrapper id={id}>
       <Container maxWidth="lg" >
         <Typography variant="h3" sx={{ fontSize: { xs: "2rem", md: "3rem" }, fontWeight: 900, mb: 1, textAlign: "center", color: "#fff" }}>
           تیم ما

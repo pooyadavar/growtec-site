@@ -50,16 +50,20 @@ const myProjects = [
   },
 ];
 function App() {
+  const handleScrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <Box>
       <TopBarInfo />
-      <Navbar />
-      <HeroSection />
-      <VirtualTour />
+      <Navbar onScrollToSection={handleScrollToSection} />
+      <HeroSection id="hero-section" />
+      <VirtualTour id="virtual-tour-section" />
       <StatsSection />
-      <ProjectsSlider projects={myProjects} />
-      <TeamSection />
-      <Footer />
+      <ProjectsSlider id="projects-section" projects={myProjects} />
+      <TeamSection id="about-us-section" />
+      <Footer id="contact-us-section" />
       {/* اینجا بقیه صفحات و کامپوننت‌های شما قرار می‌گیرند */}
     </Box>
   );
