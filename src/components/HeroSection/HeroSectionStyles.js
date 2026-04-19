@@ -174,10 +174,10 @@ export const PointerImage = styled("img")(({ theme }) => ({
 }));
 
 export const FeatureCard = styled(Box)(({ theme }) => ({
-  position: "absolute", 
+  position: "absolute",
   bottom: "12%",
   right: "2%",
-  width: "38%", 
+  width: "60%", // Increased width for desktop
   backgroundColor: "rgba(20,20,20,0.75)",
   backdropFilter: "blur(12px)",
   border: "1px solid rgba(2,132,106,0.3)",
@@ -188,7 +188,7 @@ export const FeatureCard = styled(Box)(({ theme }) => ({
   textAlign: "left",
   zIndex: 30,
   [theme.breakpoints.down("sm")]: {
-    width: "45%",
+    width: "70%", // Increased width for mobile
     padding: theme.spacing(1),
   },
 }));
