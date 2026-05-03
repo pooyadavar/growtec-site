@@ -10,9 +10,9 @@ import icon3 from "../../assets/svg/Icons (2).svg";
 import icon4 from "../../assets/svg/Icons (1).svg";
 
 const statData = [
-  { id: 1, title: "پروژه های در دست اجرا", value: 15, icon: icon3 },
-  { id: 2, title: "پروژه های تکمیل شده", value: 79, icon: icon4 },
-  { id: 3, title: "استان های پیاده شده", value: 20, icon: icon2 },
+  { id: 1, title: "پروژه های در دست اجرا", value: 12, icon: icon3 },
+  { id: 2, title: "پروژه های تکمیل شده", value: 106, icon: icon4 },
+  { id: 3, title: "استان های پیاده شده", value: 30, icon: icon2 },
   { id: 4, title: "ثبت اختراع", value: 5, icon: icon1 },
 ];
 

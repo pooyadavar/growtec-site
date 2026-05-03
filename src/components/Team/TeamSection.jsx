@@ -12,6 +12,7 @@ import sabokrooh from "../../assets/images/sabokrooh.jpg";
 import seyed from "../../assets/images/seyed.jpg";
 import shaban from "../../assets/images/shaban.jpg";
 import yazdi from "../../assets/images/yazdi.jpg";
+import bayani from "../../assets/images/bayani.jpg"
 
 // چیدمان دقیق گرید ۴ ستونه (چپ به راست در کد، اما چون سایت راست‌چین است از راست چیده می‌شود)
 const teamMembers = [
@@ -30,7 +31,7 @@ const teamMembers = [
   // --- ردیف سوم (۳ نفر + ۱ جای خالی در ابتدا) ---
   { id: "empty-2", empty: true }, // فضای خالی زیر مدیر نصب
   { id: 1, name: "عرفان اکبری", role: "مدیر پشتیبانی", image: akbari },
-  { id: 10, name: "لورم ایپسوم", role: "کارشناس نصب و پشتیبانی", image: "https://via.placeholder.com/190x190/4caf50/ffffff?text=Mock+Person" }, // شخص مک
+  { id: 10, name: " محمدحسین بیانی", role: "کارشناس نصب و پشتیبانی", image: bayani }, 
   { id: 8, name: "محمدرضا شعبانعلی زاده", role: "مدیر تولید", image: shaban },
 ];
 

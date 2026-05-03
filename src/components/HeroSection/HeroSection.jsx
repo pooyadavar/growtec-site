@@ -11,112 +11,127 @@ import {
   FloatingContainer,
   RelativeWrapper,
   PointerImage,
-  FeatureCard,
+  TabsContainer,
+  TabButton,
+  ContentCard,
+  ContentTitle,
+  ContentDescription,
 } from "./HeroSectionStyles";
 import greenhouseImage from "../../assets/svg/ecosystem growtec.png";
 import circlePointer from "../../assets/svg/Circle Pointer.svg";
 
 const GROUPED_POINTER_IDS = [1, 2, 4, 5];
+// این آرایه ثابت است، پس باید بیرون از کامپوننت تعریف شود
+const cycleIds = [GROUPED_POINTER_IDS[0], 3, 6, 7];
+
 const GROUPED_CONTENT = {
   title: "گرو کامپکت",
-  desc: "سیستم تجمیع شده هوشمند کنترل اقلیم و آبیاری گلخانه که با سنجش لحظه‌ای دما، رطوبت، CO2، نور و باد، شرایط بهینه رشد را به‌طور خودمار حفظ می‌کند. این دستگاه ضمن کنترل فن‌ها، هیترها و آبیاری بر اساس نیاز واقعی گیاه، تا ۲۰٪ عملکرد محصول را افزایش و ۳۰٪ مصرف آب را کاهش می‌دهد.",
+  desc: "سیستم تجمیع شده هوشمند کنترل اقلیم و آبیاری گلخانه که با سنجش لحظه‌ای دما، رطوبت، CO2، نور و باد، شرایط بهینه رشد را به‌طور خودکار حفظ می‌کند. این دستگاه ضمن کنترل فن‌ها، هیترها و آبیاری بر اساس نیاز واقعی گیاه، تا ۲۰٪ عملکرد محصول را افزایش و ۳۰٪ مصرف آب را کاهش می‌دهد.",
 };
 
-const HeroSection = ({ id }) => {
-  const pointersData = [
-    {
-      id: 1,
-      position: {
-        xs: { top: "32.5%", left: "25.5%" },
-        sm: { top: "32.5%", left: "25.5%" },
-        md: { top: "32.5%", left: "25.5%" },
-      },
-      title: "سیستم دوزینگ",
-      desc: "تزریق دقیق و زمان‌بندی شده مواد مغذی به سیستم آبیاری با دقت میلی‌لیتر.",
+const pointersData = [
+  {
+    id: 1,
+    position: {
+      xs: { top: "32.3%", left: "25.8%" },
+      sm: { top: "32.3%", left: "25.8%" },
+      md: { top: "32.3%", left: "25.8%" },
     },
-    {
-      id: 2,
-      position: {
-        xs: { top: "32%", left: "61.5%" },
-        sm: { top: "32%", left: "61.5%" },
-        md: { top: "32%", left: "61.5%" },
-      },
-      title: "سنسورهای اقلیم",
-      desc: "پایش لحظه‌ای دما، رطوبت و میزان CO2 برای ایجاد شرایط ایده‌آل رشد.",
+    title: "سیستم دوزینگ",
+    desc: "تزریق دقیق و زمان‌بندی شده مواد مغذی به سیستم آبیاری با دقت میلی‌لیتر.",
+  },
+  {
+    id: 2,
+    position: {
+      xs: { top: "31.3%", left: "61.8%" },
+      sm: { top: "31.3%", left: "61.8%" },
+      md: { top: "31.3%", left: "61.8%" },
     },
-    {
-      id: 3,
-      position: {
-        xs: { top: "66.5%", left: "38%" },
-        sm: { top: "66.5%", left: "38%" },
-        md: { top: "66.5%", left: "38%" },
-      },
-      title: "گروزون",
-      desc: "یک سامانه مازولار و قابل گسترش برای ضدعفونی و بازیافت زه آب گلخانه های هیدروپونیک است. این دستگاه با تولید اُزُن محلول و تزریق آن از طریق پمپ ودتکس دوفازی، پاتوژنهای آب را از بین می برد و آب را به چرخه آبیاری بازمیگرداند.",
+    title: "سنسورهای اقلیم",
+    desc: "پایش لحظه‌ای دما، رطوبت و میزان CO2 برای ایجاد شرایط ایده‌آل رشد.",
+  },
+  {
+    id: 3,
+    position: {
+      xs: { top: "66.5%", left: "38%" },
+      sm: { top: "66.5%", left: "38%" },
+      md: { top: "66.5%", left: "38%" },
     },
-    {
-      id: 4,
-      position: {
-        xs: { top: "50%", left: "55.5%" },
-        sm: { top: "50%", left: "55.5%" },
-        md: { top: "50%", left: "55.5%" },
-      },
-      title: "سیستم تهویه",
-      desc: "فرمان اتوماتیک به فن‌ها و پدها برای جلوگیری از تنش حرارتی گیاهان.",
+    title: "گروزون",
+    desc: "یک سامانه ماژولار و قابل گسترش برای ضدعفونی و بازیافت زه آب گلخانه‌های هیدروپونیک است. این دستگاه با تولید اُزُن محلول و تزریق آن از طریق پمپ ودتکس دوفازی، پاتوژن‌های آب را از بین می‌برد و آب را به چرخه آبیاری بازمی‌گرداند.",
+  },
+  {
+    id: 4,
+    position: {
+      xs: { top: "49.8%", left: "55.3%" },
+      sm: { top: "49.8%", left: "55.3%" },
+      md: { top: "49.8%", left: "55.3%" },
     },
-    {
-      id: 5,
-      position: {
-        xs: { top: "55%", left: "70%" },
-        sm: { top: "55%", left: "70%" },
-        md: { top: "55%", left: "70%" },
-      },
-      title: "مخازن استوک",
-      desc: "پشتیبانی تا ۱۲ مخزن مجزا برای فرمولاسیون‌های پیچیده کود دهی.",
+    title: "سیستم تهویه",
+    desc: "فرمان اتوماتیک به فن‌ها و پدها برای جلوگیری از تنش حرارتی گیاهان.",
+  },
+  {
+    id: 5,
+    position: {
+      xs: { top: "55%", left: "70%" },
+      sm: { top: "55%", left: "70%" },
+      md: { top: "55%", left: "70%" },
     },
-    {
-      id: 6,
-      position: {
-        xs: { top: "47%", left: "76%" },
-        sm: { top: "47%", left: "76%" },
-        md: { top: "47%", left: "76%" },
-      },
-      title: "گرو کامپکت",
-      desc: "سیستم تجمیع شده هوشمند کنترل اقلیم و آبیاری گلخانه که با سنجش لحظه‌ای دما، رطوبت، CO2، نور و باد، شرایط بهینه رشد را به‌طور خودمار حفظ می‌کند. این دستگاه ضمن کنترل فن‌ها، هیترها و آبیاری بر اساس نیاز واقعی گیاه، تا ۲۰٪ عملکرد محصول را افزایش و ۳۰٪ مصرف آب را کاهش می‌دهد.",
+    title: "مخازن استوک",
+    desc: "پشتیبانی تا ۱۲ مخزن مجزا برای فرمولاسیون‌های پیچیده کود دهی.",
+  },
+  {
+    id: 6,
+    position: {
+      xs: { top: "46.5%", left: "76.3%" },
+      sm: { top: "46.5%", left: "76.3%" },
+      md: { top: "46.5%", left: "76.3%" },
     },
-    {
-      id: 7,
-      position: {
-        xs: { top: "38%", left: "16%" },
-        sm: { top: "38%", left: "16%" },
-        md: { top: "38%", left: "16%" },
-      },
-      title: "گرولاین",
-      desc: "سیستم کنترل هوشمند هیدروپونیک(گرولاین) محصولی از گروتک است که عملیات تهیه محلول غذایی ایده‌آل برای کشت هیدروپونیک، آبیاری و کنترل اقلیم گلخانه را به صورت کاملا اتوماتیک و بدون نیاز به نیروی انسانی انجام می‌دهد. در این خدمت گروتک از سیستم Batch Dosing. همچنین در این سیستم ماژول های پایش، کنترل اقلیم و تغذیه می‌تواند به صورت یکپارچه تحت یک پکیج در اختیار کاربر قرار گیرد.",
+    title: "گرو کامپکت",
+    desc: "سیستم تجمیع شده هوشمند کنترل اقلیم و آبیاری گلخانه که با سنجش لحظه‌ای دما، رطوبت، CO2، نور و باد، شرایط بهینه رشد را به‌طور خودکار حفظ می‌کند. این دستگاه ضمن کنترل فن‌ها، هیترها و آبیاری بر اساس نیاز واقعی گیاه، تا ۲۰٪ عملکرد محصول را افزایش و ۳۰٪ مصرف آب را کاهش می‌دهد.",
+  },
+  {
+    id: 7,
+    position: {
+      xs: { top: "38.5%", left: "16.3%" },
+      sm: { top: "38.5%", left: "16.3%" },
+      md: { top: "38.5%", left: "16.3%" },
     },
-  ];
+    title: "گرولاین",
+    desc: "سیستم کنترل هوشمند هیدروپونیک(گرولاین) محصولی از گروتک است که عملیات تهیه محلول غذایی ایده‌آل برای کشت هیدروپونیک، آبیاری و کنترل اقلیم گلخانه را به صورت کاملا اتوماتیک و بدون نیاز به نیروی انسانی انجام می‌دهد. در این خدمت گروتک از سیستم Batch Dosing استفاده می‌شود. همچنین در این سیستم ماژول‌های پایش، کنترل اقلیم و تغذیه می‌تواند به صورت یکپارچه تحت یک پکیج در اختیار کاربر قرار گیرد.",
+  },
+];
 
-  // IDs that represent distinct states for the timer and content
-  const cycleIds = [GROUPED_POINTER_IDS[0], 3, 6, 7]; // Use the first grouped ID to represent the group
-  const [activeId, setActiveId] = useState(cycleIds[0]); // Initialize with the first ID in the cycle (group)
+const HeroSection = ({ id }) => {
+  const [activeId, setActiveId] = useState(cycleIds[0]);
+  const [isPaused, setIsPaused] = useState(false); // کنترل وضعیت توقف تایمر
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
+    // اگر کاربر در حال Hover است، تایمر اجرا نشود
+    if (isPaused) return;
+
     const timer = setInterval(() => {
       setActiveId((prevActiveId) => {
         const currentIndex = cycleIds.indexOf(prevActiveId);
+        // اگر آیتم فعلی در چرخه نیست (مثلا کاربر روی آیتمی کلیک کرده که در سیکل نیست)، به آیتم اول برگردد
+        if (currentIndex === -1) return cycleIds[0];
+        
         const nextIndex = (currentIndex + 1) % cycleIds.length;
         return cycleIds[nextIndex];
       });
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [cycleIds]); // Dependency on cycleIds
+  }, [isPaused]); // اضافه شدن isPaused به dependency array
 
-  // Helper function to check if an ID is part of the grouped IDs
-  const isGroupedPointer = (id) => GROUPED_POINTER_IDS.includes(id);
+  const isGroupedPointer = (pointerId) => GROUPED_POINTER_IDS.includes(pointerId);
+
+  const activePointer = isGroupedPointer(activeId)
+    ? GROUPED_CONTENT
+    : pointersData.find((p) => p.id === activeId);
 
   return (
     <HeroWrapper id={id}>
@@ -127,26 +142,34 @@ const HeroSection = ({ id }) => {
           variant="h3"
           gutterBottom
           sx={{
-            // 🟢 سایزها کمی فشرده‌تر شدند
-            fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
+            fontSize: { xs: "1.5rem", sm: "1.8rem", md: "2.1rem" },
             fontWeight: "bold",
             lineHeight: 1.2,
+            textAlign: "center",
           }}
         >
           سیستم هوشمند
           <br />
           تغذیه و کنترل اقلیم
         </Typography>
+
         {!isMobile && (
           <DescriptionBox>
             <Typography
               variant="h6"
               sx={{
-                lineHeight: { xs: 1.5, md: 1.75 },
-                fontSize: { xs: "0.875rem", sm: "1rem", md: "1.25rem" },
+                lineHeight: { xs: 1.2, md: 1.5 },
+                fontSize: { xs: "0.875rem", sm: "1rem", md: "1.2rem" },
               }}
             >
-              سیستم کنترل اقلیم GRC با قابلیت کنترل دما، رطوبت گلخانه و بستر کشت، نور، سرعت و جهت باد، اکسیژن و کربن دی اکسید و کربن مونواکسید و به کار گیری الگوریتم های پیشرفته و مدرن کنترلی، می تواند نگاهبان مناسبی برای شرایط محیطی گلخانه شما باشد. با اتصال این سیستم به برق گلخانه میتوان تمامی عملگرهای گفته شده را با استفاده از الگوریتم های هوشمند و یا به صورت دستی کنترل کرد. این دستگاه را می توان به صورت پکیج در کنار دستگاه کنترل تغذیه و یا به صورت تکی نصب و استفاده کرد.
+              سیستم کنترل اقلیم GRC با قابلیت کنترل دما، رطوبت گلخانه و بستر
+              کشت، نور، سرعت و جهت باد، اکسیژن و کربن دی‌اکسید و کربن مونواکسید
+              و به کارگیری الگوریتم‌های پیشرفته و مدرن کنترلی، می‌تواند نگاهبان
+              مناسبی برای شرایط محیطی گلخانه شما باشد. با اتصال این سیستم به برق
+              گلخانه می‌توان تمامی عملگرهای گفته شده را با استفاده از
+              الگوریتم‌های هوشمند و یا به صورت دستی کنترل کرد. این دستگاه را
+              می‌توان به صورت پکیج در کنار دستگاه کنترل تغذیه و یا به صورت تکی
+              نصب و استفاده کرد.
             </Typography>
           </DescriptionBox>
         )}
@@ -162,17 +185,27 @@ const HeroSection = ({ id }) => {
               style={{ scale: "0.9" }}
             />
 
-            {/* ✅ رینگ‌ها با sx برای هر breakpoint */}
             {pointersData.map((pointer) => {
               const isActive = isGroupedPointer(pointer.id)
                 ? isGroupedPointer(activeId)
                 : pointer.id === activeId;
+              
               return (
                 <PointerImage
                   key={pointer.id}
                   src={circlePointer}
                   alt="پوینتر"
                   className={isActive ? "active" : ""}
+                  // اضافه شدن رویدادهای ماوس برای توقف و تغییر توضیحات
+                  onMouseEnter={() => {
+                    setIsPaused(true);
+                    setActiveId(
+                      isGroupedPointer(pointer.id)
+                        ? GROUPED_POINTER_IDS[0]
+                        : pointer.id
+                    );
+                  }}
+                  onMouseLeave={() => setIsPaused(false)}
                   onClick={() =>
                     setActiveId(
                       isGroupedPointer(pointer.id)
@@ -195,30 +228,17 @@ const HeroSection = ({ id }) => {
                 />
               );
             })}
-
-            {/* ✅ کارت توضیحات */}
-            <Fade in={true} key={activeId} timeout={800}>
-              <FeatureCard>
-                <Typography
-                  variant="body1"
-                  sx={{ color: "#02846A", fontWeight: "bold", mb: 1 }}
-                >
-                  {isGroupedPointer(activeId)
-                    ? GROUPED_CONTENT.title
-                    : pointersData.find((p) => p.id === activeId)?.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ color: "#E0E0E0", lineHeight: 1.8 }}
-                >
-                  {isGroupedPointer(activeId)
-                    ? GROUPED_CONTENT.desc
-                    : pointersData.find((p) => p.id === activeId)?.desc}
-                </Typography>
-              </FeatureCard>
-            </Fade>
           </RelativeWrapper>
         </FloatingContainer>
+
+        <Fade in={true} key={activeId} timeout={600}>
+          <ContentCard>
+            <ContentTitle variant="h6">{activePointer?.title}</ContentTitle>
+            <ContentDescription variant="body1">
+              {activePointer?.desc}
+            </ContentDescription>
+          </ContentCard>
+        </Fade>
       </ImageBox>
     </HeroWrapper>
   );

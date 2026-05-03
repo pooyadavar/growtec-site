@@ -1,7 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import { keyframes } from "@mui/system";
-import { Scale } from "@mui/icons-material";
 
 const floatingAnimation = keyframes`
   0%, 100% { transform: translateY(0px); }
@@ -25,7 +24,7 @@ const ringExpandAnimation = keyframes`
 export const HeroWrapper = styled(Box)(({ theme }) => ({
   position: "relative",
   backgroundColor: "#1A1A1A",
-  minHeight: "auto", // Set minHeight to auto for mobile
+  minHeight: "auto",
   display: "flex",
   direction: "ltr",
   flexDirection: "column",
@@ -40,7 +39,7 @@ export const HeroWrapper = styled(Box)(({ theme }) => ({
     marginTop: 0,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "start",
+    alignItems: "center",
     paddingLeft: theme.spacing(8),
     paddingRight: theme.spacing(8),
   },
@@ -67,19 +66,19 @@ export const ContentBox = styled(Box)(({ theme }) => ({
   direction: "ltr",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center", // Changed to center for mobile
+  justifyContent: "center",
   alignItems: "center",
   color: theme.palette.text.primary,
   textAlign: "center",
-  width: "90%", // Adjusted width for mobile
+  width: "90%",
   marginBottom: theme.spacing(4),
-  padding: theme.spacing(1), // Added padding for mobile
+  padding: theme.spacing(1),
   [theme.breakpoints.up("md")]: {
-    textAlign: "left", // Changed to left for larger screens
-    alignItems: "flex-start", // Changed to flex-start for larger screens
+    textAlign: "center",
+    alignItems: "center",
     width: "40%",
     justifyContent: "center",
-    padding: theme.spacing(2), // Adjusted padding for larger screens
+    padding: theme.spacing(2),
   },
 }));
 
@@ -104,17 +103,21 @@ export const DescriptionBox = styled(Box)(({ theme }) => ({
 export const ImageBox = styled(Box)(({ theme }) => ({
   position: "relative",
   zIndex: 1,
-  width: "80%", // Further reduce width for mobile
+  width: "80%",
   maxWidth: "500px",
   display: "flex",
+  flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
+  gap: theme.spacing(0),
+  paddingBottom: "6rem",
   [theme.breakpoints.up("md")]: {
     marginTop: 0,
     width: "45%",
     maxWidth: "800px",
   },
 }));
+
 export const FloatingContainer = styled(Box)({
   position: "relative",
   width: "100%",
@@ -123,19 +126,17 @@ export const FloatingContainer = styled(Box)({
 });
 
 export const RelativeWrapper = styled(Box)({
-  position: "relative", 
+  position: "relative",
   display: "block",
   width: "100%",
-  lineHeight: 0, 
-
+  lineHeight: 0,
 
   "& .main-image": {
     display: "block",
     width: "100%",
-    height: "auto", 
+    height: "auto",
     filter: "brightness(0.75) contrast(1.1) grayscale(10%)",
     transition: "all 0.8s ease-in-out",
-
   },
 });
 
@@ -175,37 +176,77 @@ export const PointerImage = styled("img")(({ theme }) => ({
   },
 }));
 
-export const FeatureCard = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  bottom: "3%", // پیش‌فرض (xs)
-  right: "2%",
+export const TabsContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  gap: theme.spacing(1),
+  flexWrap: "wrap",
+  justifyContent: "center",
+  marginTop: theme.spacing(3),
   width: "100%",
-  backgroundColor: "rgba(20,20,20,0.4)",
-  backdropFilter: "blur(12px)",
+  [theme.breakpoints.down("md")]: {
+    gap: theme.spacing(0.5),
+    marginTop: theme.spacing(2),
+  },
+}));
+
+export const TabButton = styled(Box)(({ theme, active }) => ({
+  padding: theme.spacing(1.2, 2.5),
+  borderRadius: "20px",
+  backgroundColor: active ? "#02846A" : "rgba(255, 255, 255, 0.1)",
+  color: "white",
+  cursor: "pointer",
+  transition: "all 0.3s ease",
+  fontWeight: active ? "bold" : "normal",
+  border: active ? "2px solid rgba(2,132,106,0.8)" : "2px solid transparent",
+  fontSize: "0.9rem",
+  "&:hover": {
+    backgroundColor: active ? "#02846A" : "rgba(255, 255, 255, 0.2)",
+    transform: "translateY(-2px)",
+  },
+  [theme.breakpoints.down("md")]: {
+    padding: theme.spacing(0.8, 1.8),
+    fontSize: "0.75rem",
+  },
+}));
+
+export const ContentCard = styled(Box)(({ theme }) => ({
+  backgroundColor: "rgba(20,20,20,0.60)",
+  backdropFilter: "blur(16px)",
   border: "1px solid rgba(2,132,106,0.3)",
   borderRadius: "16px",
-  padding: theme.spacing(1.5),
+  padding: theme.spacing(3),
   boxShadow: "0 8px 32px 0 rgba(0,0,0,0.37)",
-  direction: "ltr",
+  direction: "rtl",
   textAlign: "left",
-  zIndex: 30,
-
-  [theme.breakpoints.up("sm")]: {
-    bottom: "-20%",
+  width: "100%",
+  minHeight: "150px",
+  position: "relative",
+  bottom: "3.5rem",
+  zIndex: -1,
+  [theme.breakpoints.down("md")]: {
+    padding: theme.spacing(2),
+    minHeight: "120px",
   },
+}));
 
-  [theme.breakpoints.up("md")]: {
-    bottom: "0%",
+
+export const ContentTitle = styled(Box)(({ theme }) => ({
+  color: "#02846A",
+  fontWeight: "bold",
+  marginBottom: theme.spacing(1.5),
+  fontSize: "1.1rem",
+  [theme.breakpoints.down("md")]: {
+    fontSize: "1.1rem",
+    marginBottom: theme.spacing(1),
   },
+}));
 
-  [theme.breakpoints.up("lg")]: {
-    bottom: "-10%",
-  },
-
-  [theme.breakpoints.down("sm")]: {
-    width: "90%",
-    left: "50%",
-    transform: "translateX(-50%)",
-    padding: theme.spacing(1),
+export const ContentDescription = styled(Box)(({ theme }) => ({
+  color: "#E0E0E0",
+  lineHeight: 1.8,
+  fontSize: "0.95rem",
+  [theme.breakpoints.down("md")]: {
+    fontSize: "0.85rem",
+    lineHeight: 1.6,
   },
 }));

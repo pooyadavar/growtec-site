@@ -18,7 +18,7 @@ import growteclogo from "../../assets/svg/logo growtec.svg";
 
 const menuItems = [
   { text: "خانه", id: "hero-section" },
-  { text: "تور مجازی محصولات", id: "virtual-tour-section" },
+  { text: "تور مجازی محصولات", id: "virtual-tour-section", path: "/vt/" },
   { text: "آخرین پروژه‌ها", id: "projects-section" },
 
   { text: "درباره ما", id: "about-us-section" },
@@ -97,7 +97,7 @@ const Navbar = ({ onScrollToSection }) => {
         </IconButton>
 
         {/* منوی دسکتاپ */}
-        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+        <Box sx={{ display: { xs: "none", md: "flex" }, flexGrow: 1, justifyContent: "center" }}>
           {menuItems.map((item) => (
             <Button
               key={item.id}
@@ -124,6 +124,9 @@ const Navbar = ({ onScrollToSection }) => {
             </Button>
           ))}
         </Box>
+
+        {/* Spacer Box for centering the menu on desktop */}
+        <Box sx={{ display: { xs: "none", md: "block" }, width: "300px" }} />
       </Toolbar>
 
       {/* منوی کشویی (Drawer) برای موبایل */}

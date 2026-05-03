@@ -44,6 +44,7 @@ const VirtualTour = ({ id }) => {
         </Typography>
         <Button
           variant="contained"
+          onClick={() => { window.location.href = '/vt/index.htm'; }}
           sx={{
             backgroundColor: '#fff',
             color: '#000',
